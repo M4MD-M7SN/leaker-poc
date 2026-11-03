@@ -20,7 +20,27 @@ A real `leak` session against a live index of 810,010 records. Searching `gmail`
 
 > **No LLM. No API keys.** Pure parsers into Elasticsearch. Fast, offline, deterministic.
 >
-> <sub>Diagram reproducible via [`assets/make_diagram.py`](assets/make_diagram.py). The screenshot is a real session with record fields redacted.</sub>
+> <sub>Diagram: [`assets/make_diagram.py`](assets/make_diagram.py) renders [`flow.svg`](assets/flow.svg); editable source in [`assets/flow.drawio`](assets/flow.drawio). The screenshot is a real session with record fields redacted.</sub>
+
+---
+
+## Quickstart
+
+After cloning, the only real dependency is **Docker** (for Elasticsearch). Then you drop your data in and search:
+
+```bash
+git clone <your-repo-url> leaker && cd leaker
+docker compose up -d                         # 1. start Elasticsearch
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt              # 2. install deps
+alias leak="python $PWD/main.py"             # (or symlink ./leak onto your PATH)
+
+leak watch                                   # 3. start the drop zone
+#   → drag ANY files or archives into ./dropzone/ — parsed + indexed automatically
+#   → or link a live DB:  leak index-db postgres --host localhost --db mydb --user postgres
+
+leak                                         # 4. search everything from the terminal
+```
 
 ---
 
@@ -67,7 +87,17 @@ source ~/.bashrc
 
 Now just type `leak` anywhere.
 
-### 4. Index your data
+### 4. Add your data
+
+**Drag-and-drop (recommended).** Start the drop-zone watcher, then drop files or archives into `dropzone/`:
+
+```bash
+leak watch                              # watches ./dropzone/
+# now drag any mix of files (or .zip/.tar/.gz/.7z) into dropzone/
+# each one is unpacked, parsed and indexed automatically, then moved to processed/
+```
+
+**Or index explicitly:**
 
 ```bash
 # Files and directories
@@ -135,7 +165,7 @@ EXACT type:csv,sqlite leak> alice@gmail.com
 ```
 main.py        — entry point + interactive REPL
                  No args → opens the shell
-                 Subcommands: index, index-db, sources, delete
+                 Subcommands: watch, index, index-db, sources, delete
 
 functions.py   — all logic, eight sections:
                    1. Config          reads .env
@@ -162,6 +192,10 @@ tests/             — unit tests (no Elasticsearch required)
 ## Non-interactive commands
 
 ```bash
+# Drop zone: watch a folder and auto-index anything dropped in
+leak watch                                  # watches ./dropzone/
+leak watch --dropzone /mnt/dumps --no-move  # custom folder, keep files in place
+
 # Index files
 leak index data/breach.csv data/users.db
 leak index /data/ --no-progress

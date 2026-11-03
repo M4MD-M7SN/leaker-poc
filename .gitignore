@@ -36,6 +36,7 @@ htmlcov/
 # Drop Zone — ignore contents, keep the directory
 dropzone/*
 !dropzone/.gitkeep
+!dropzone/README.md
 dropzone/_staging/
 
 # Processed — ignore contents, keep the directory

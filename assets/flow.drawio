@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="leaker-flow" name="Leaker flow">
+    <mxGraphModel dx="1280" dy="760" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="560" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Leaker: ingest once, search everything" style="text;html=1;align=center;fontSize=22;fontStyle=1;fontColor=#172036;" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="800" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" value="clone → launch → drag your data into the drop zone (or link a database) → search from the terminal" style="text;html=1;align=center;fontSize=13;fontColor=#5b6b84;" vertex="1" parent="1">
+          <mxGeometry x="300" y="54" width="800" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="&lt;b style=&quot;color:#2f6fed;font-size:15px&quot;&gt;1 · SOURCES&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b style=&quot;color:#2f6fed;font-family:monospace&quot;&gt;Drag &amp;amp; drop into dropzone/&lt;/b&gt;&lt;br&gt;Stealer logs .txt / .log&lt;br&gt;CSV · TSV · Excel&lt;br&gt;PDF · DOCX&lt;br&gt;JSON · JSONL · XML&lt;br&gt;SQLite · SQL dumps&lt;br&gt;Archives .zip · .tar · .7z&lt;br&gt;&lt;br&gt;&lt;i style=&quot;color:#5b6b84&quot;&gt;or link a live DB:&lt;br&gt;Postgres · MySQL · Mongo · Redis&lt;/i&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#eef3fe;strokeColor=#2f6fed;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=14;fontSize=13;fontColor=#172036;" vertex="1" parent="1">
+          <mxGeometry x="40" y="110" width="320" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="&lt;b style=&quot;color:#17a398;font-size:15px&quot;&gt;2 · EXTRACT + NORMALIZE&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b style=&quot;color:#17a398;font-family:monospace&quot;&gt;watcher.py, auto&lt;/b&gt;&lt;br&gt;New files detected on drop&lt;br&gt;Archives auto-unpacked&lt;br&gt;Per-format parser + regex&lt;br&gt;Pulls emails, user:pass,&lt;br&gt;phones, hashes&lt;br&gt;→ one flat record" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#e7f6f3;strokeColor=#17a398;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=14;fontSize=13;fontColor=#172036;" vertex="1" parent="1">
+          <mxGeometry x="420" y="110" width="300" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="&lt;b style=&quot;color:#8e7cc3;font-size:15px&quot;&gt;3 · INDEX&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b style=&quot;color:#8e7cc3;font-family:monospace&quot;&gt;Elasticsearch&lt;/b&gt;&lt;br&gt;Bulk index&lt;br&gt;Keeps provenance:&lt;br&gt;source · line · column&lt;br&gt;· table · page&lt;br&gt;SHA-256 dedup" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#f1edf8;strokeColor=#8e7cc3;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=14;fontSize=13;fontColor=#172036;" vertex="1" parent="1">
+          <mxGeometry x="780" y="110" width="270" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" value="&lt;b style=&quot;color:#e9a23b;font-size:15px&quot;&gt;4 · SEARCH&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b style=&quot;color:#e9a23b;font-family:monospace&quot;&gt;leak&amp;gt;&lt;/b&gt;&lt;br&gt;Full-text or exact&lt;br&gt;Filter by type / source&lt;br&gt;Paged results&lt;br&gt;Every hit shows&lt;br&gt;where it came from" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#fdf3e2;strokeColor=#e9a23b;strokeWidth=1.5;verticalAlign=top;align=left;spacingLeft=14;spacingTop=14;fontSize=13;fontColor=#172036;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="110" width="250" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="edgeStyle=none;rounded=0;html=1;strokeColor=#5b6b84;strokeWidth=2.5;endArrow=block;endFill=1;" edge="1" parent="1" source="s1" target="s2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=none;rounded=0;html=1;strokeColor=#5b6b84;strokeWidth=2.5;endArrow=block;endFill=1;" edge="1" parent="1" source="s2" target="s3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=none;rounded=0;html=1;strokeColor=#5b6b84;strokeWidth=2.5;endArrow=block;endFill=1;" edge="1" parent="1" source="s3" target="s4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="foot" value="No LLM · no API keys · offline · deterministic · exact provenance on every match" style="text;html=1;align=center;fontSize=13;fontColor=#5b6b84;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="300" y="500" width="800" height="22" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

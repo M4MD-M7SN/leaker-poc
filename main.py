@@ -313,6 +313,51 @@ def cmd_index(paths, index_name, no_progress):
     )
 
 
+# ── watch (drag-and-drop drop zone) ────────────────────────────────────────────
+
+@cli.command("watch")
+@click.option("--dropzone", default="dropzone", show_default=True,
+              help="Folder to watch. Created automatically if missing.")
+@click.option("--index", "index_name", default=fn.ES_INDEX, show_default=True)
+@click.option("--settle", "settle_seconds", default=2.0, show_default=True,
+              help="Seconds to wait after a file appears before processing it.")
+@click.option("--no-move", "no_move", is_flag=True, default=False,
+              help="Keep files in the drop zone instead of moving them to processed/.")
+def cmd_watch(dropzone, index_name, settle_seconds, no_move):
+    """
+    Watch a drop zone and auto-index anything dropped into it.
+
+    \b
+    Drag ANY files (including .zip/.tar/.gz/.7z archives) into the folder:
+      1. archives are unpacked
+      2. each file is parsed by the extractor for its format
+      3. records are indexed into Elasticsearch
+      4. the file moves to processed/  (unless --no-move)
+
+    Then run `leak` to search. Press Ctrl-C to stop watching.
+    """
+    from pathlib import Path
+    from watcher import start_watcher
+
+    es = fn.get_es_client()
+
+    console.print("\n[bold cyan]Leaker Drop Zone[/bold cyan]")
+    console.print(f"[dim]Watching:[/dim] [green]{Path(dropzone).resolve()}[/green]")
+    console.print(
+        "[dim]Drop files or archives here — they are parsed and indexed "
+        "automatically.[/dim]\n"
+    )
+
+    start_watcher(
+        index_fn=lambda records: fn.index_records(
+            es, records, index=index_name, show_progress=False),
+        dropzone=Path(dropzone),
+        settle_seconds=settle_seconds,
+        move_after=not no_move,
+        block=True,
+    )
+
+
 # ── index-db (live databases) ─────────────────────────────────────────────────
 
 @cli.command("index-db")
