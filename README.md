@@ -18,6 +18,14 @@ A real `leak` session against a live index of 810,010 records. Searching `gmail`
 
 ![Leaker live search](assets/demo.png)
 
+## Where it fits
+
+Commercial platforms like **Intelligence X (intelx.io)**, DeHashed and Snusbase do a version of this at scale: they index breach dumps, stealer logs and leaked databases and let you search them for an email, a domain or a credential. They are genuinely valuable for threat intelligence, incident response and checking whether your own accounts are exposed.
+
+The catch is that they are all **cloud services**. To use them you send your selectors (and sometimes your own data) to a third party, you pay per query or per seat, and you never actually hold the index. For a lot of real work that is a dealbreaker. During an incident you cannot upload a client's leaked data to someone else's server, and you routinely need to search a private corpus that no public service has ever indexed.
+
+Leaker is the **self-hosted version of that capability**. You point it at your own collection of stealer logs and breach dumps, it builds the index on your own machine, and you search it from the terminal with full provenance on every hit. Nothing leaves your network, there is no per-query cost, and it runs completely offline. That is why it matters: the same "search every leak at once" power those platforms sell, but private, free, and on data you control.
+
 ---
 
 ## Quickstart
