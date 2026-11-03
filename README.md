@@ -314,7 +314,7 @@ def extract_myformat(path: str) -> Generator[LeakerRecord, None, None]:
 ".myfmt": extract_myformat,
 ```
 
-Done — it works in the shell immediately.
+Done  it works in the shell immediately.
 
 ---
 
