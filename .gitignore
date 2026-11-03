@@ -41,3 +41,6 @@ dropzone/_staging/
 # Processed — ignore contents, keep the directory
 processed/*
 !processed/.gitkeep
+
+# local MCP tooling, not part of Leaker
+drawio-mcp/
