@@ -51,7 +51,7 @@ def esc(s): return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&g
 parts = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" font-family="Inter, Helvetica, Arial, sans-serif">']
 parts.append(f'<rect width="{W}" height="{H}" fill="{BG}"/>')
 # title
-parts.append(f'<text x="{W/2}" y="52" text-anchor="middle" font-size="27" font-weight="700" fill="{INK}">Leaker: ingest once, search everything</text>')
+parts.append(f'<text x="{W/2}" y="52" text-anchor="middle" font-size="27" font-weight="700" fill="{INK}">Leaker flow chart</text>')
 parts.append(f'<text x="{W/2}" y="80" text-anchor="middle" font-size="14.5" fill="{SLATE}">clone → launch → drag your data into the drop zone (or link a database) → search from the terminal</text>')
 
 box_top = 110

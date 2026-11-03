@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1460" height="560" viewBox="0 0 1460 560" font-family="Inter, Helvetica, Arial, sans-serif">
 <rect width="1460" height="560" fill="#ffffff"/>
-<text x="730.0" y="52" text-anchor="middle" font-size="27" font-weight="700" fill="#172036">Leaker: ingest once, search everything</text>
+<text x="730.0" y="52" text-anchor="middle" font-size="27" font-weight="700" fill="#172036">Leaker flow chart</text>
 <text x="730.0" y="80" text-anchor="middle" font-size="14.5" fill="#5b6b84">clone → launch → drag your data into the drop zone (or link a database) → search from the terminal</text>
 <rect x="34" y="110" width="350" height="368" rx="16" fill="#eef3fe" stroke="#2f6fed" stroke-opacity="0.25" stroke-width="1.5"/>
 <rect x="34" y="110" width="350" height="46" rx="16" fill="#2f6fed"/>

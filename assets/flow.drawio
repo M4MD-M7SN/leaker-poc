@@ -4,7 +4,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="title" value="Leaker: ingest once, search everything" style="text;html=1;align=center;fontSize=22;fontStyle=1;fontColor=#172036;" vertex="1" parent="1">
+        <mxCell id="title" value="Leaker flow chart" style="text;html=1;align=center;fontSize=22;fontStyle=1;fontColor=#172036;" vertex="1" parent="1">
           <mxGeometry x="300" y="20" width="800" height="34" as="geometry" />
         </mxCell>
         <mxCell id="sub" value="clone → launch → drag your data into the drop zone (or link a database) → search from the terminal" style="text;html=1;align=center;fontSize=13;fontColor=#5b6b84;" vertex="1" parent="1">
