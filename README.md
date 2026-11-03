@@ -14,13 +14,13 @@ So Leaker does it with plain parsing. Each format has a small parser, and **rege
 
 ### Live search
 
-A real run against a local index of 810,010 records. Searching `@gmail.com` returns every match across text dumps, SQL dumps, CSV and more, each with its source and line. (Real emails are masked here; the synthetic `sample_data.*` rows are shown in full.)
+A real `leak` session against a live index of 810,010 records. Searching `gmail` returns **563,462 matches**, each shown as a card with its source file, line and type, and the matched term highlighted. The record fields are redacted in this screenshot because the indexed data is real.
 
 ![Leaker live search](assets/demo.png)
 
 > **No LLM. No API keys.** Pure parsers into Elasticsearch. Fast, offline, deterministic.
 >
-> <sub>Diagram and screenshot reproducible via [`assets/make_diagram.py`](assets/make_diagram.py) and [`assets/make_screenshot.py`](assets/make_screenshot.py).</sub>
+> <sub>Diagram reproducible via [`assets/make_diagram.py`](assets/make_diagram.py). The screenshot is a real session with record fields redacted.</sub>
 
 ---
 
