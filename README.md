@@ -4,19 +4,23 @@
 
 ## The problem it solves
 
-When data is scattered across CSVs, PDFs, SQL dumps, spreadsheets and live databases, finding every place a single email, phone number or record appears is slow and easy to get wrong. The tempting modern answer is to point a language model at it, but for this job that is the wrong tool. A model hallucinates, costs money on every query, has to be fed the data (a real problem when that data is sensitive), and still cannot tell you the exact file, line and column a match came from. This work needs the opposite of a best guess: results that are exact, fast, offline and fully traceable. So Leaker indexes everything once with plain deterministic parsers into Elasticsearch, and every hit carries its full provenance. No model, no API key, no guessing.
+This started with **stealer logs**. Infostealer malware (RedLine, Raccoon, Lumma and the like) infects a machine and quietly exfiltrates everything useful: saved browser passwords, cookies, autofill, crypto wallets and system details. The output is a "log", and these logs circulate in huge, messy dumps, usually plain text lines like `URL:username:password`, mixed in with combolists and leaked database exports. If you do threat intelligence or check your own exposure, the practical question is simple: *does this email, domain or credential appear anywhere in millions of these lines?* Answering it is painful, because the data arrives in dozens of inconsistent formats and no two dumps look alike.
 
-Supports CSV, TSV, PDF, TXT, LOG, JSON, JSONL, XML, Excel, SQLite, SQL dumps,
-DOCX, PostgreSQL, MySQL, MongoDB, Redis.
+You cannot just point a language model at this. A model hallucinates, costs money on every query, has to be fed the data (a serious problem when the data is stolen credentials), and still cannot tell you the exact file, line and column a match came from. The job needs the opposite of a best guess: results that are **exact, fast, offline and fully traceable**.
 
-> **No LLM. No API keys.**
-> Pure parsers → Elasticsearch. Fast, offline, deterministic.
+So Leaker does it with plain parsing. Each format has a small parser, and **regex** pulls the useful pieces out of each line (emails, `user:pass` pairs, phone numbers, hashes). Every value is then **normalized** into one flat record that carries its own provenance (source, line, column, table, page), and the records are bulk-indexed into Elasticsearch and de-duplicated by content hash. After that you can search any value across everything instantly, and every hit tells you exactly where it came from. No model, no API keys, no guessing.
 
-![Architecture](assets/architecture.png)
+![How Leaker works](assets/flow.png)
 
-![Supported sources](assets/sources.png)
+### Live search
 
-<sub>Diagrams reproducible via [`assets/make_charts.py`](assets/make_charts.py).</sub>
+A real run against a local index of 810,010 records. Searching `@gmail.com` returns every match across text dumps, SQL dumps, CSV and more, each with its source and line. (Real emails are masked here; the synthetic `sample_data.*` rows are shown in full.)
+
+![Leaker live search](assets/demo.png)
+
+> **No LLM. No API keys.** Pure parsers into Elasticsearch. Fast, offline, deterministic.
+>
+> <sub>Diagram and screenshot reproducible via [`assets/make_diagram.py`](assets/make_diagram.py) and [`assets/make_screenshot.py`](assets/make_screenshot.py).</sub>
 
 ---
 
