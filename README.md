@@ -1,6 +1,10 @@
 # Leaker
 
-**Index your data once. Search all of it — instantly — from the terminal.**
+**Index your data once. Search all of it, instantly, from the terminal.**
+
+## The problem it solves
+
+When data is scattered across CSVs, PDFs, SQL dumps, spreadsheets and live databases, finding every place a single email, phone number or record appears is slow and easy to get wrong. The tempting modern answer is to point a language model at it, but for this job that is the wrong tool. A model hallucinates, costs money on every query, has to be fed the data (a real problem when that data is sensitive), and still cannot tell you the exact file, line and column a match came from. This work needs the opposite of a best guess: results that are exact, fast, offline and fully traceable. So Leaker indexes everything once with plain deterministic parsers into Elasticsearch, and every hit carries its full provenance. No model, no API key, no guessing.
 
 Supports CSV, TSV, PDF, TXT, LOG, JSON, JSONL, XML, Excel, SQLite, SQL dumps,
 DOCX, PostgreSQL, MySQL, MongoDB, Redis.
