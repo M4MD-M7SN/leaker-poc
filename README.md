@@ -18,10 +18,6 @@ A real `leak` session against a live index of 810,010 records. Searching `gmail`
 
 ![Leaker live search](assets/demo.png)
 
-> **No LLM. No API keys.** Pure parsers into Elasticsearch. Fast, offline, deterministic.
->
-> <sub>Diagram: [`assets/make_diagram.py`](assets/make_diagram.py) renders [`flow.svg`](assets/flow.svg); editable source in [`assets/flow.drawio`](assets/flow.drawio). The screenshot is a real session with record fields redacted.</sub>
-
 ---
 
 ## Quickstart
@@ -57,9 +53,13 @@ pip install -r requirements.txt
 
 ### 2. Start Elasticsearch
 
+Elasticsearch ships with this repo as the included [`docker-compose.yml`](docker-compose.yml). You don't install it yourself — Docker pulls and runs it in a container, so the **only prerequisite is Docker Desktop**.
+
 ```bash
 docker compose up -d
 ```
+
+This pulls and starts Elasticsearch 8.15 (and Kibana) and stores its data in a Docker volume (`es_data`), so your index survives restarts.
 
 Elasticsearch → `http://localhost:9200`
 Kibana (optional UI) → `http://localhost:5601`
