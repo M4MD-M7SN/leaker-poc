@@ -1,0 +1,32 @@
+# ── Document parsing (no LLM — pure parsers) ──────────────────
+pypdf==4.3.1           # PDF text extraction
+pdfplumber==0.11.4     # PDF (table-aware, preferred)
+pandas>=2.2.0          # CSV, Excel, TSV, PSV (flexible version for Python 3.14 compatibility)
+openpyxl==3.1.5        # Excel .xlsx
+xlrd==2.0.1            # Excel .xls (legacy)
+python-docx==1.1.2     # Word .docx
+odfpy==1.4.1           # OpenDocument (.ods)
+
+# ── Database drivers ───────────────────────────────────────────
+psycopg[binary]>=3.1.0 # PostgreSQL (psycopg3 for Python 3.14 support)
+pymysql==1.1.1         # MySQL / MariaDB
+pymongo==4.8.0         # MongoDB
+redis==5.0.8           # Redis
+
+# ── Elasticsearch ──────────────────────────────────────────────
+elasticsearch==8.15.1  # Official client — bulk indexing + keyword search
+
+# ── CLI & display ──────────────────────────────────────────────
+click==8.1.7
+rich==13.7.1
+tqdm==4.66.5
+
+# ── Config / utils ────────────────────────────────────────────
+python-dotenv==1.0.1
+
+# ── Drop Zone watcher ─────────────────────────────────────────
+watchdog==4.0.1        # Filesystem event monitoring (drop zone auto-indexing)
+py7zr==0.21.0          # 7-zip archive support (optional — ZIP/TAR work without it)
+
+# ── Testing ────────────────────────────────────────────────────
+pytest==8.3.3

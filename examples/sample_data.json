@@ -1,0 +1,5 @@
+[
+  {"id": 1, "username": "alice91", "email": "alice@gmail.com", "password_hash": "5f4dcc3b5aa765d61d8327deb882cf99", "role": "admin"},
+  {"id": 2, "username": "bsmith", "email": "bob@yahoo.com",   "password_hash": "d8578edf8458ce06fbc5bb76a58c5ca4", "role": "user"},
+  {"id": 3, "username": "carol_w", "email": "carol@gmail.com","password_hash": "098f6bcd4621d373cade4e832627b4f6", "role": "user"}
+]

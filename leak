@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# leak — Leaker entry point
+#
+# Just type:  leak
+# Or:         leak index data/breach.csv
+#             leak index-db postgres --host localhost --db mydb --user postgres
+#             leak sources
+#             leak delete
+#
+# Setup (run once):
+#   chmod +x /path/to/Leaker/leak
+#   sudo ln -sf /path/to/Leaker/leak /usr/local/bin/leak
+#   # — or — add the Leaker directory to your PATH in ~/.bashrc / ~/.zshrc
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Activate virtualenv if one exists inside the project
+if [ -f "$SCRIPT_DIR/venv/bin/activate" ]; then
+    source "$SCRIPT_DIR/venv/bin/activate"
+fi
+
+exec python "$SCRIPT_DIR/main.py" "$@"
